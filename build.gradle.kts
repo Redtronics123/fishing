@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.20"
     application
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "de.redtronics"
@@ -22,9 +23,15 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "17"
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("de.redtronics.MainKt")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes("Main-Class" to "de.redtronics.MainKt")
+    }
 }
