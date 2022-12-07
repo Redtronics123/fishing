@@ -1,5 +1,8 @@
 package de.redtronics
 
+import de.redtronics.database.Connect
+
 fun main() {
-    println("Hallo Welt")
+    val connection = Connect().connect()
+    println(connection)
 }
