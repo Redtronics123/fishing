@@ -1,18 +1,20 @@
 package de.redtronics.database
 
+import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
 class Connect {
-    fun connect() {
+    fun connect(): Connection? {
+        var connection: Connection? = null
         val url = "jdbc:sqlite:/home/nils/IdeaProjects/exam/src/main/resources/questions/brandenburg.db"
 
         try {
-            DriverManager.getConnection(url)
+            connection = DriverManager.getConnection(url)
             println("Connection successful")
-        }
-        catch (e: SQLException) {
+        } catch (e: SQLException) {
             println(e.message)
         }
+        return connection
     }
 }
