@@ -8,3 +8,6 @@
 # Project exclude paths
 /build/
 /build/classes/kotlin/main/
+
+# database
+/resources/questions/brandenburg.db
