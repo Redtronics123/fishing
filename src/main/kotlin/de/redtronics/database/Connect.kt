@@ -11,7 +11,6 @@ class Connect {
 
         try {
             connection = DriverManager.getConnection(url)
-            println("Connection successful")
         } catch (e: SQLException) {
             println(e.message)
         }
