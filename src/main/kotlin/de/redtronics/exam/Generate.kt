@@ -14,19 +14,17 @@ class Generate {
 
         while (counter < 6) {
             val ramNum = randomNumbers()
-            println(ramNum)
 
             for (num in ramNum) {
                  val question = Select(
                     "SELECT * FROM questions WHERE SG=$counter AND FNR=$num"
                  ).select()
-                println(question)
 
                 Office().generateExam(question)
              }
             counter++
         }
-        val out = FileOutputStream(File("test.docx"))
+        val out = FileOutputStream(File("prüfung.docx"))
         this.word.write(out)
     }
 
