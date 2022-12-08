@@ -1,8 +1,7 @@
 package de.redtronics
 
-import de.redtronics.database.Connect
+import de.redtronics.exam.Generate
 
 fun main() {
-    val connection = Connect().connect()
-    println(connection)
+    Generate().generate()
 }
