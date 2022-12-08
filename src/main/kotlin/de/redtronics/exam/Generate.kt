@@ -3,30 +3,35 @@ package de.redtronics.exam
 import kotlin.random.Random
 import de.redtronics.database.Select
 import de.redtronics.docs.Office
+import java.io.File
+import java.io.FileOutputStream
 
 class Generate {
+    private val word = Office().wordDoc()
+
     fun generate() {
-        var word = Office("/").wordDoc()
-
-
-        var counter: Int = 1
+        var counter = 1
 
         while (counter < 6) {
             val ramNum = randomNumbers()
+            println(ramNum)
 
             for (num in ramNum) {
-                 var question = Select(
-                    "SELECT Frage, Antwort1, Antwort2, Antwort3 FROM questions WHERE SG=$counter WHERE FNR=$num"
+                 val question = Select(
+                    "SELECT * FROM questions WHERE SG=$counter AND FNR=$num"
                  ).select()
-                println("Here in docx: $question")
+                println(question)
 
+                Office().generateExam(question)
              }
             counter++
         }
+        val out = FileOutputStream(File("test.docx"))
+        this.word.write(out)
     }
 
     private fun randomNumbers(): MutableList<Int> {
-        var counter: Int = 0
+        var counter = 0
         val nums = mutableListOf<Int>()
 
         while (counter < 12) {
@@ -40,5 +45,4 @@ class Generate {
         }
         return nums
     }
-
 }
